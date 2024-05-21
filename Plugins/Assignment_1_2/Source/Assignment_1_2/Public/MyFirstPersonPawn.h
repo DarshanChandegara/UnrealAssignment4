@@ -21,6 +21,8 @@ class ASSIGNMENT_1_2_API AMyFirstPersonPawn : public AMyBaseCharacter
 public:
 	AMyFirstPersonPawn();
 
+	void MapKey(UInputMappingContext* mappingContext, UInputAction* action, FKey key, bool bNegate, bool bSwizzel, EInputAxisSwizzle swizzleOrder);
+
 	void Move(const struct FInputActionValue& action);
 
 	void Rotate(const struct FInputActionValue& action);

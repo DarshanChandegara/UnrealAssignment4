@@ -31,7 +31,7 @@ AMyFirstPersonPawn::AMyFirstPersonPawn()
 	PawnAttributeAsset = LoadObject<UMyPawnAttributesDataAsset>(nullptr, TEXT("/Script/Assignment_1_2.MyPawnAttributesDataAsset'/Game/Assignment2/FPP_PawnAttributeDataAsset.FPP_PawnAttributeDataAsset'"));
 }
 
-static void MapKey(UInputMappingContext* mappingContext, UInputAction* action, FKey key, bool bNegate = false, bool bSwizzel = false, EInputAxisSwizzle swizzleOrder = EInputAxisSwizzle::YXZ) {
+void AMyFirstPersonPawn::MapKey(UInputMappingContext* mappingContext, UInputAction* action, FKey key, bool bNegate = false, bool bSwizzel = false, EInputAxisSwizzle swizzleOrder = EInputAxisSwizzle::YXZ) {
 
 	FEnhancedActionKeyMapping& mapping = mappingContext->MapKey(action, key);
 	UObject* outer = mappingContext->GetOuter();

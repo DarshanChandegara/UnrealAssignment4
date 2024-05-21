@@ -53,6 +53,8 @@ public:
 public:
 	ATP_ThirdPersonCharacter();
 
+	void MapKey(UInputMappingContext* mappingContext, UInputAction* action, FKey key, bool bNegate, bool bSwizzel, EInputAxisSwizzle swizzleOrder);
+
 protected:
 
 	/** Called for movement input */

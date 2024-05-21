@@ -42,7 +42,7 @@ void ATopDownPawn::Tick(float DeltaTime)
 
 }
 
-static void MapKey(UInputMappingContext* mapping, UInputAction* action, FKey key, bool bNegate = false, bool bSwizzle = false, EInputAxisSwizzle swizzleOrder = EInputAxisSwizzle::YXZ) {
+void ATopDownPawn::MapKey(UInputMappingContext* Mapping, UInputAction* action, FKey key, bool bNegate , bool bSwizzle , EInputAxisSwizzle swizzleOrder ) {
 
 	FEnhancedActionKeyMapping& map = mapping->MapKey(action, key);
 	UObject* outer = mapping->GetOuter();
