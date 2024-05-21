@@ -16,6 +16,8 @@ AOrthoGraphicViewPawn::AOrthoGraphicViewPawn()
 
 	CameraBoom = CreateAbstractDefaultSubobject<USpringArmComponent>(TEXT("boom"));
 	CameraBoom->AttachToComponent(scene, FAttachmentTransformRules::KeepRelativeTransform);
+	CameraBoom->bEnableCameraLag = true;
+	CameraBoom->CameraLagSpeed = 5.f;
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("camera"));
 	Camera->AttachToComponent(CameraBoom, FAttachmentTransformRules::KeepRelativeTransform);
@@ -37,6 +39,23 @@ void AOrthoGraphicViewPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+static void MapKey(UInputMappingContext* mapping, UInputAction* action, FKey key, bool bNegate = false, bool bSwizzle = false, EInputAxisSwizzle swizzleOrder = EInputAxisSwizzle::YXZ) {
+
+	FEnhancedActionKeyMapping& map = mapping->MapKey(action, key);
+	UObject* outer = mapping->GetOuter();
+
+	if (bNegate) {
+		UInputModifierNegate* negate = NewObject<UInputModifierNegate>(outer);
+		map.Modifiers.Add(negate);
+	}
+
+	if (bSwizzle) {
+		UInputModifierSwizzleAxis* swizzle = NewObject<UInputModifierSwizzleAxis>(outer);
+		swizzle->Order = swizzleOrder;
+		map.Modifiers.Add(swizzle);
+	}
 }
 
 // Called to bind functionality to input
@@ -109,5 +128,5 @@ void AOrthoGraphicViewPawn::Zoom(const FInputActionValue& Value)
 {
 	float value = Value.Get<float>();
 	CameraBoom->TargetOffset.Z -= value * 25;
-	CameraBoom->TargetOffset.Z = FMath::Clamp(CameraBoom->TargetOffset.Z, 500, 2000);
+	CameraBoom->TargetOffset.Z = FMath::Clamp(CameraBoom->TargetOffset.Z, 200, 2000);
 }

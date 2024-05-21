@@ -22,7 +22,8 @@ UENUM()
 enum class EViewPawnType : int8 {
 	PerspectiveView ,
 	OrthographicView ,
-	IsometricView
+	IsometricView , 
+	TopDownView
 };
 
 USTRUCT(BlueprintType)

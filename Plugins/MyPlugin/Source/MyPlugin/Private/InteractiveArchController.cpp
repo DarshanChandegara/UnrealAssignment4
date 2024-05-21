@@ -10,6 +10,8 @@ void AInteractiveArchController::BeginPlay()
 {
 	Super::BeginPlay();
 
+	//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Green, "Press P to Change The View");
+
 	if (SelectionWidgetClass) {
 		SelectionWidget = CreateWidget<USelectionWidget>(this, SelectionWidgetClass);
 	}
@@ -336,7 +338,7 @@ void AInteractiveArchController::Switching()
 
 void AInteractiveArchController::SpawnAndPossess()
 {
-	Table = LoadObject<UDataTable>(nullptr, TEXT("/Script/Engine.DataTable'/Game/Assignment4/DataTable/ViewPawnTable.ViewPawnTable'"));
+	Table = LoadObject<UDataTable>(nullptr, TEXT("/Script/Engine.DataTable'/Game/Assignment4/DataTable/ViewPawnTable_.ViewPawnTable_'"));
 	if (Table)
 	{
 		TArray<FName> RowNames = Table->GetRowNames();

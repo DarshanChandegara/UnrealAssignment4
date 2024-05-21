@@ -42,23 +42,23 @@ void ATopDownPawn::Tick(float DeltaTime)
 
 }
 
-//static void MapKey(UInputMappingContext* mapping, UInputAction* action, FKey key, bool bNegate = false, bool bSwizzle = false, EInputAxisSwizzle swizzleOrder = EInputAxisSwizzle::YXZ) {
-//
-//	FEnhancedActionKeyMapping& map = mapping->MapKey(action, key);
-//	UObject* outer = mapping->GetOuter();
-//
-//	if (bNegate) {
-//		UInputModifierNegate* negate = NewObject<UInputModifierNegate>(outer);
-//		map.Modifiers.Add(negate);
-//	}
-//
-//	if (bSwizzle) {
-//		UInputModifierSwizzleAxis* swizzle = NewObject<UInputModifierSwizzleAxis>(outer);
-//		swizzle->Order = swizzleOrder;
-//		map.Modifiers.Add(swizzle);
-//	}
-//
-//}
+static void MapKey(UInputMappingContext* mapping, UInputAction* action, FKey key, bool bNegate = false, bool bSwizzle = false, EInputAxisSwizzle swizzleOrder = EInputAxisSwizzle::YXZ) {
+
+	FEnhancedActionKeyMapping& map = mapping->MapKey(action, key);
+	UObject* outer = mapping->GetOuter();
+
+	if (bNegate) {
+		UInputModifierNegate* negate = NewObject<UInputModifierNegate>(outer);
+		map.Modifiers.Add(negate);
+	}
+
+	if (bSwizzle) {
+		UInputModifierSwizzleAxis* swizzle = NewObject<UInputModifierSwizzleAxis>(outer);
+		swizzle->Order = swizzleOrder;
+		map.Modifiers.Add(swizzle);
+	}
+
+}
 
 // Called to bind functionality to input
 void ATopDownPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

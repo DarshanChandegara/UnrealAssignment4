@@ -15,6 +15,8 @@ APerspectiveViewPawn::APerspectiveViewPawn()
 
 	springArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
 	springArm->SetupAttachment(GetRootComponent());
+	springArm->bEnableCameraLag = true;
+	springArm->CameraLagSpeed = 5.f;
 
 	camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	camera->SetupAttachment(springArm, USpringArmComponent::SocketName);
@@ -40,6 +42,23 @@ void APerspectiveViewPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+static void MapKey(UInputMappingContext* mapping, UInputAction* action, FKey key, bool bNegate = false, bool bSwizzle = false, EInputAxisSwizzle swizzleOrder = EInputAxisSwizzle::YXZ) {
+
+	FEnhancedActionKeyMapping& map = mapping->MapKey(action, key);
+	UObject* outer = mapping->GetOuter();
+
+	if (bNegate) {
+		UInputModifierNegate* negate = NewObject<UInputModifierNegate>(outer);
+		map.Modifiers.Add(negate);
+	}
+
+	if (bSwizzle) {
+		UInputModifierSwizzleAxis* swizzle = NewObject<UInputModifierSwizzleAxis>(outer);
+		swizzle->Order = swizzleOrder;
+		map.Modifiers.Add(swizzle);
+	}
 }
 
 void APerspectiveViewPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

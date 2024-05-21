@@ -16,6 +16,8 @@ AIsometricViewPawn::AIsometricViewPawn()
 
 	CameraBoom = CreateAbstractDefaultSubobject<USpringArmComponent>(TEXT("boom"));
 	CameraBoom->AttachToComponent(scene, FAttachmentTransformRules::KeepRelativeTransform);
+	CameraBoom->bEnableCameraLag = true;
+	CameraBoom->CameraLagSpeed = 5.f;
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("camera"));
 	Camera->AttachToComponent(CameraBoom, FAttachmentTransformRules::KeepRelativeTransform);
@@ -42,6 +44,23 @@ void AIsometricViewPawn::Tick(float DeltaTime)
 	CameraBoom->SetRelativeRotation(FMath::Lerp(CurrentRotation, NewRotation, DeltaTime*2));
 
 
+}
+
+static void MapKey(UInputMappingContext* mapping, UInputAction* action, FKey key, bool bNegate = false, bool bSwizzle = false, EInputAxisSwizzle swizzleOrder = EInputAxisSwizzle::YXZ) {
+
+	FEnhancedActionKeyMapping& map = mapping->MapKey(action, key);
+	UObject* outer = mapping->GetOuter();
+
+	if (bNegate) {
+		UInputModifierNegate* negate = NewObject<UInputModifierNegate>(outer);
+		map.Modifiers.Add(negate);
+	}
+
+	if (bSwizzle) {
+		UInputModifierSwizzleAxis* swizzle = NewObject<UInputModifierSwizzleAxis>(outer);
+		swizzle->Order = swizzleOrder;
+		map.Modifiers.Add(swizzle);
+	}
 }
 
 void AIsometricViewPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -89,7 +108,7 @@ void AIsometricViewPawn::Zoom(const FInputActionValue& Value)
 {
 	float value = Value.Get<float>();
 	CameraBoom->TargetArmLength -= value * ZoomScale;
-	CameraBoom->TargetArmLength = FMath::Clamp(CameraBoom->TargetArmLength, 500, 2000);
+	CameraBoom->TargetArmLength = FMath::Clamp(CameraBoom->TargetArmLength, 200, 2000);
 }
 
 void AIsometricViewPawn::RotateQ(const FInputActionValue& Value)
