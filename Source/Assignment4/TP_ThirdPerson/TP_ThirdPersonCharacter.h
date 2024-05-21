@@ -7,7 +7,7 @@
 #include "InputActionValue.h"
 #include "InputMappingContext.h"
 #include "InputAction.h"
-#include "MyBaseCharacter.h"
+#include "../../../Plugins/Assignment_1_2/Source/Assignment_1_2/Public/MyBaseCharacter.h"
 #include "TP_ThirdPersonCharacter.generated.h"
 
 

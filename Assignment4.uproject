@@ -30,6 +30,10 @@
 			"Enabled": true
 		},
 		{
+			"Name": "Assignment5_6",
+			"Enabled": true
+		},
+		{
 			"Name": "EnhancedInput",
 			"Enabled": true
 		}

@@ -7,8 +7,8 @@
 #include "Components/InputComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
-#include "TP_ThirdPerson/TP_ThirdPersonCharacter.h"
-#include "TP_TopDown/TP_TopDownCharacter.h"
+#include "../../../../../Source/Assignment4/TP_ThirdPerson/TP_ThirdPersonCharacter.h"
+#include "../../../../../Source/Assignment4/TP_TopDown/TP_TopDownCharacter.h"
 
 AMyPlayerController::AMyPlayerController()
 {

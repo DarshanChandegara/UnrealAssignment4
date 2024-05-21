@@ -24,7 +24,6 @@ public class Assignment_1_2 : ModuleRules
 			(new string[]
 			{
 					  "C:\\Program Files\\Epic Games\\UE_5.2\\Engine\\Plugins\\EnhancedInput\\Source\\EnhancedInput\\Public" ,
-					  "E:\\Unreal Training\\Assignment4\\Source\\Assignment4"
 				  }); ;
 
 

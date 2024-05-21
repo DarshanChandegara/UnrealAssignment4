@@ -16,7 +16,6 @@ public class Assignment4 : ModuleRules
 			(new string[]
 			{
 					  "C:\\Program Files\\Epic Games\\UE_5.2\\Engine\\Plugins\\EnhancedInput\\Source\\EnhancedInput\\Public" ,
-					  "E:\\Unreal Training\\Assignment4\\Plugins\\Assignment_1_2\\Source\\Assignment_1_2\\Public"
 				  }) ;
 
         PrivateDependencyModuleNames.AddRange(new string[] {  });

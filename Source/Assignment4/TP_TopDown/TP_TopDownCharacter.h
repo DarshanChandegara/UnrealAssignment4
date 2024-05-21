@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "NiagaraSystem.h"
-#include "MyBaseCharacter.h"
+#include "../../../Plugins/Assignment_1_2/Source/Assignment_1_2/Public/MyBaseCharacter.h"
 #include "TP_TopDownCharacter.generated.h"
 
 UCLASS(Blueprintable)
