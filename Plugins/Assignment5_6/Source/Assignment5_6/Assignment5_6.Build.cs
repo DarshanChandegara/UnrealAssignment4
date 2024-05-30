@@ -42,7 +42,8 @@ public class Assignment5_6 : ModuleRules
                 "AIModule",
                 "Niagara",
                 "GameplayTasks",
-                "UMG"
+                "UMG",
+                "ProceduralMeshComponent"
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -66,7 +67,8 @@ public class Assignment5_6 : ModuleRules
                 "AIModule",
                 "Niagara",
                 "GameplayTasks",
-                "UMG"
+                "UMG",
+                "ProceduralMeshComponent"
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);

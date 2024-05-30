@@ -20,6 +20,7 @@ APerspectiveViewPawn::APerspectiveViewPawn()
 
 	camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	camera->SetupAttachment(springArm, USpringArmComponent::SocketName);
+	//camera->bUsePawnControlRotation = false;
 
 	movement = CreateDefaultSubobject<UFloatingPawnMovement>(TEXT("MOVE"));
 	bUseControllerRotationPitch = false;
