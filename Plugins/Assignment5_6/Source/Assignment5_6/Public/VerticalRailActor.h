@@ -64,6 +64,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Defauls)
 	void GenerateCone(FVector Dimension, FVector Offset = FVector(0,0,0));
 
+	UFUNCTION(BlueprintCallable, Category = Defauls)
+	void GenerateDonut(float OuterRadius, float InnerRadius, int NumSegments, int NumSides, const FVector& LocationOffset);
+
 	UFUNCTION(BlueprintCallable)
 	void GenerateCircle(int Points, float Radius);
 
