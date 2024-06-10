@@ -64,7 +64,7 @@ void AMeshGenerator::AddInstances(UStaticMesh* StaticMesh, const FTransform& Tra
 				UMaterialInstanceDynamic* DynamicMaterial = UMaterialInstanceDynamic::Create(0, Material);
 				NewHISMC->SetStaticMesh(StaticMesh);
 				if (Material) {
-					GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Green, "Inside Material");
+					//GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Green, "Inside Material");
 					NewHISMC->SetMaterial(0, Material);
 				}
 				HISMComponents.Add(StaticMesh, NewHISMC);
@@ -72,6 +72,8 @@ void AMeshGenerator::AddInstances(UStaticMesh* StaticMesh, const FTransform& Tra
 				NewHISMC->RegisterComponentWithWorld(GetWorld());
 				NewHISMC->AddInstance(Transform, false);
 			}
+
+			UpdateEventPrgress.ExecuteIfBound(ProgressPrecent);
 		});
 }
 
@@ -91,4 +93,5 @@ void AMeshGenerator::Tick(float DeltaTime)
 
 	}
 }
+
 

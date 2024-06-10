@@ -50,9 +50,6 @@ public:
 	UPROPERTY( EditAnywhere ,BlueprintReadWrite)
 	float Height;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int32 NumberOfInstances;
-
 	ACustomPlayerController();
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
@@ -62,7 +59,10 @@ public:
 	void GenerateAreaShape(int index);
 
 	UFUNCTION(BlueprintCallable)
-	void HandleButtonClick(int index);
+	void HandleButtonClick(int index , int NumberOfInstances);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void HandleChangeProgress(float Progress);
 
 	void LeftClick();
 

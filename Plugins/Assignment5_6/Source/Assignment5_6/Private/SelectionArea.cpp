@@ -15,34 +15,11 @@ ASelectionArea::ASelectionArea()
 void ASelectionArea::BeginPlay()
 {
 	Super::BeginPlay();
-	//AreaMesh = NewObject<UProceduralMeshComponent>(this);
-	//AreaMesh->AttachToComponent(GetRootComponent() ,FAttachmentTransformRules::KeepRelativeTransform );
-	
 }
 
 void ASelectionArea::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	//APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-	//if (PlayerController)
-	//{
-	//	if (FVector StartLocation, WorldDirection; PlayerController->DeprojectMousePositionToWorld(StartLocation, WorldDirection))
-	//	{
-	//		FVector EndLocation = StartLocation + WorldDirection * 100000;
-
-	//		FCollisionQueryParams Params;
-	//		Params.bTraceComplex = true;
-	//		Params.AddIgnoredActor(this);
-
-	//		if (FHitResult HitResult; GetWorld()->LineTraceSingleByChannel(HitResult, StartLocation, EndLocation,
-	//			ECC_Visibility, Params))
-	//		{
-	//			AreaMesh->SetRelativeLocation(HitResult.Location);
-	//		}
-	//	}
-	//}
-
 }
 
 void ASelectionArea::GenerateSphere(float Radius)

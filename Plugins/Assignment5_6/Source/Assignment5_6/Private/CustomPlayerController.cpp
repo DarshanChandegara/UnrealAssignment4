@@ -8,6 +8,10 @@
 ACustomPlayerController::ACustomPlayerController()
 {
 	bShowMouseCursor = true;
+	Lentgh = 1000.f;
+	Width = 1000.f;
+	Height = 1000.f;
+	Radius = 500.f;
 }
 
 void ACustomPlayerController::BeginPlay()
@@ -25,6 +29,10 @@ void ACustomPlayerController::BeginPlay()
 	if (MeshGeneratorActor = Cast<AMeshGenerator>(SpawnActor1); MeshGeneratorActor) {
 
 	}
+
+	MeshGeneratorActor->UpdateEventPrgress.BindUObject(this, &ACustomPlayerController::HandleChangeProgress);
+
+	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Cyan, "Click Left Mouse Button Once to Place the Bounding Box and Again Click Mouse Left Button to change the position of box according to Mouse");
 }
 
 void ACustomPlayerController::Tick(float DeltaTime)
@@ -110,7 +118,7 @@ void ACustomPlayerController::GenerateAreaShape(int index)
 	}
 }
 
-void ACustomPlayerController::HandleButtonClick(int index)
+void ACustomPlayerController::HandleButtonClick(int index , int NumberOfInstances)
 {
 	MeshGeneratorActor->Location = AreaActor->GetActorLocation();
 

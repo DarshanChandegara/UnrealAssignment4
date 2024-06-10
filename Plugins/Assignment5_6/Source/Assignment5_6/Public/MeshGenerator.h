@@ -16,6 +16,8 @@ enum class EAreaType : int8
 	Sphere
 };
 
+DECLARE_DELEGATE_OneParam(FUpdateProgressEvent, float)
+
 UCLASS()
 class ASSIGNMENT5_6_API AMeshGenerator : public AActor
 {
@@ -56,13 +58,13 @@ public:
 
 	void AddInstances(UStaticMesh* StaticMesh, const FTransform& Transforms, UMaterialInterface* Material);
 
+	FUpdateProgressEvent UpdateEventPrgress;
+
 	AMeshGenerator();
 
 protected:
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
-
-public:	
 	virtual void Tick(float DeltaTime) override;
 
 };

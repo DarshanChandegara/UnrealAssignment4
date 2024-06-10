@@ -62,16 +62,13 @@ void FAsyncScatterTask::DoWork()
 					FVector Position = GeneraterandomPointInSphere(Origin , MeshGenerator->Dimension.X);
 					Transform = (FTransform(FRotator(RandomRotation), Position, FVector(RandomValue)));
 				}
-				MeshGenerator->AddInstances(CurrentMesh, Transform, CurrentMaterial);
 				MeshGenerator->ProgressPrecent = static_cast<float>(iIndex) / static_cast<float>(MeshGenerator->NumberOfInstances - 1);
+				MeshGenerator->AddInstances(CurrentMesh, Transform, CurrentMaterial);
 				FPlatformProcess::Sleep(0.005f);
 			}
 		}
 	}
 
-	AsyncTask(ENamedThreads::GameThread, [this]()
-		{
-			/*MeshGenerator->FinishScatter();*/
-		});
+
 }
 
