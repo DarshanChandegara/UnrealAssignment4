@@ -43,3 +43,4 @@ void UMeshSelectionScrollBox::HandleOnTextureSelected(const FTextureData& Textur
 
 	OnTextureSelectEvent.ExecuteIfBound(TextureData);
 }
+

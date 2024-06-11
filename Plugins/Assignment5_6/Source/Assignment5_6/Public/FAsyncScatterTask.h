@@ -21,7 +21,7 @@ public:
 
 private:
 
-	AMeshGenerator* MeshGenerator;
+	TWeakObjectPtr<AMeshGenerator> MeshGenerator;
 
 	FVector Location;
 

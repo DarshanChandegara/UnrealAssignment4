@@ -79,7 +79,7 @@ void AMeshGenerator::AddInstances(UStaticMesh* StaticMesh, const FTransform& Tra
 
 void AMeshGenerator::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-	FinishScatter();
+	//FinishScatter();
 	Super::EndPlay(EndPlayReason);
 }
 

@@ -30,13 +30,13 @@ FVector FAsyncScatterTask::GeneraterandomPointInSphere(FVector Origin, float Rad
 
 void FAsyncScatterTask::DoWork()
 {
-	if (MeshGenerator)
+	if (MeshGenerator.IsValid())
 	{
 		if (UMeshDataAsset* DataAsset = MeshGenerator->DataAsset)
 		{
 			TArray<FMeshType> MeshArray = DataAsset->MeshTypeArray;
 
-			for (int iIndex = 0; iIndex < MeshGenerator->NumberOfInstances; iIndex++)
+			for (int iIndex = 0; MeshGenerator.IsValid() && (iIndex < MeshGenerator->NumberOfInstances); iIndex++)
 			{
 				float RandomIndex = FMath::RandRange(0, DataAsset->MeshTypeArray.Num() - 1);
 
@@ -53,17 +53,22 @@ void FAsyncScatterTask::DoWork()
 				float RandomValue = FMath::RandRange(CurrentMeshType.MinScale, CurrentMeshType.MaxSacle);
 				float RandomRotation = FMath::RandRange(CurrentMeshType.MinRotation, CurrentMeshType.MaxRotation);
 
-				if (MeshGenerator->AreaType == EAreaType::Box)
+				if(MeshGenerator.IsValid())
 				{
-					FVector Position = FMath::RandPointInBox(BoundingBox);
-					Transform = (FTransform(FRotator(RandomRotation), Position, FVector(RandomValue)));
+					if (MeshGenerator->AreaType == EAreaType::Box)
+					{
+						FVector Position = FMath::RandPointInBox(BoundingBox);
+						Transform = (FTransform(FRotator(RandomRotation), Position, FVector(RandomValue)));
+					}
+					else {
+						FVector Position = GeneraterandomPointInSphere(Origin, MeshGenerator->Dimension.X);
+						Transform = (FTransform(FRotator(RandomRotation), Position, FVector(RandomValue)));
+					}
 				}
-				else {
-					FVector Position = GeneraterandomPointInSphere(Origin , MeshGenerator->Dimension.X);
-					Transform = (FTransform(FRotator(RandomRotation), Position, FVector(RandomValue)));
+				if (MeshGenerator.IsValid()) {
+					MeshGenerator->ProgressPrecent = static_cast<float>(iIndex) / static_cast<float>(MeshGenerator->NumberOfInstances - 1);
+					MeshGenerator->AddInstances(CurrentMesh, Transform, CurrentMaterial);
 				}
-				MeshGenerator->ProgressPrecent = static_cast<float>(iIndex) / static_cast<float>(MeshGenerator->NumberOfInstances - 1);
-				MeshGenerator->AddInstances(CurrentMesh, Transform, CurrentMaterial);
 				FPlatformProcess::Sleep(0.005f);
 			}
 		}
